@@ -17,9 +17,6 @@ function App() {
 
   return (
     <>
-    <div className="App">
-      <Authorize setUser={setUser} />
-    </div>
     <Switch>
         <Route exact path="/">
           <ProjectContainer />
