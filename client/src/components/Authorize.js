@@ -38,11 +38,13 @@ function Authorize({setUser}) {
           <br/>
           <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
         </label>
+        <br/>
         <label>
          Password
         <br/>
         <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
         </label>
+        <br/>
         <input type="submit" value="Sign up!" />
         <input type="submit" value="Login!" onClick={()=> setLogin(true)} />
       </form>
