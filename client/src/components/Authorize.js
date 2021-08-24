@@ -32,6 +32,8 @@ function Authorize({setUser}) {
     }
     return (
         <> 
+        <div className = "App">
+        <h1> Login Below </h1>
         <form onSubmit={onSubmit}>
         <label>
           Username
@@ -49,6 +51,7 @@ function Authorize({setUser}) {
         <input type="submit" value="Login!" onClick={()=> setLogin(true)} />
       </form>
       {errors?errors.map(e => <Errors>{e}</Errors>):null}
+        </div>
         </>
     )
 }
@@ -56,3 +59,4 @@ function Authorize({setUser}) {
 export default Authorize;
 const Errors = styled.div `
 color: white;`
+
