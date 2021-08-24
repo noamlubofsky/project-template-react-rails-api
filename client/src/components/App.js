@@ -22,7 +22,7 @@ function App() {
   return (
     <>
     <Switch>
-    {/* <Header user={user} setUser={setUser}/> */}
+     <Header user={user} setUser={setUser}/> 
         <Route exact path="/">
           <ProjectContainer />
         </Route>
