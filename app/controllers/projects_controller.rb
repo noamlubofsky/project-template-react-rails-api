@@ -5,18 +5,18 @@ class ProjectsController < ApplicationController
         render json: projects
     end 
     def create 
-        project = Project.create(production_params)
+        project = Project.create(project_params)
         if project.valid?
-            render json:production
+            render json:project
         else
-            render json: {error: production.errors.full_messages} 
+            render json: {error: project.errors.full_messages} 
         end 
     end 
     
     private 
 
-    def production_params
-        params.require(:project).permit(:title, :genre, :description, :budget, :image, :director, :artistic_director, :ongoing)
+    def project_params
+        params.require(:project).permit(:name, :description, :github_link, :youtube_link, :likes, :image)
     end 
 
 end
