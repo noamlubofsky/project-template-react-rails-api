@@ -4,15 +4,22 @@ import React, {useState} from "react";
 function ProjectCard({ project, handleUpdateProject }) {
     const [liked, setLiked] = useState(false)
     const [favorite, setFavorite] = useState(false)
+    const {id} = project;
 
-    const toggleLike = (id) => {
+    function toggleLike() {
+        const updateObj = {
+            likes: project.likes + 1,
+        };
+
         setLiked(!liked)
-        {!liked ? fetch(`/projects/${id}/like`, {
+
+        {!liked ? 
+            fetch(`/projects/${id}/like`, {
             method: "PATCH",
             headers: {
               "Content-Type": "application/json",
             },
-            body: JSON.stringify({ }),
+            body: JSON.stringify(updateObj),
           })
             .then((r) => r.json())
             .then((updatedProject) => {
@@ -24,7 +31,7 @@ function ProjectCard({ project, handleUpdateProject }) {
                 headers: {
                   "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ }),
+                body: JSON.stringify(updateObj),
               })
                 .then((r) => r.json())
                 .then((updatedProject) => {
@@ -63,7 +70,7 @@ function ProjectCard({ project, handleUpdateProject }) {
           </div>
 
           <span>
-              <button className='likeBtn' onClick={toggleLike}>
+              <button type='submit' className='likeBtn' onClick={toggleLike}>
                 {!liked ? '♡' : '❤️'}
               </button>
               <button className='likeBtn' onClick={toggleFavorite}>
