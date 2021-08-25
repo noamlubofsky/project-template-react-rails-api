@@ -9,7 +9,7 @@ function ProjectContainer () {
 
     useEffect(() => {
         function fetchItems(){
-          fetch('/productions')
+          fetch("/projects")
           .then(res=>res.json())
           .then(projects => {
             if(projects.error){
@@ -22,12 +22,21 @@ function ProjectContainer () {
         fetchItems();
       },[]);
 
-      console.log(projects)
+      function handleUpdateProject(updatedProject) {
+        const updatedProjectsArray = projects.map((project) => {
+          return project.id === updatedProject.id ? updatedProject : project;
+        });
+        setProjects(updatedProjectsArray);
+      }
+
+    //   console.log(projects)
 
     return (
         <div>
         <h1>Available Projects</h1>
-        <ProjectCard setProjects={projects} />
+        {projects.map(project => (
+          <ProjectCard project={project} handleUpdateProject={handleUpdateProject}/>
+        ))}
         </div>
     )
 }

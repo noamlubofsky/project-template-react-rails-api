@@ -11,12 +11,28 @@ class ProjectsController < ApplicationController
         else
             render json: {error: project.errors.full_messages} 
         end 
-    end 
+    end
+    
+    def increment_likes
+        project = find_project
+          project.update(likes: project.likes + 1)
+          render json: project
+      end
+
+      def decrement_likes
+        project = find_project
+          project.update(likes: project.likes - 1)
+          render json: project
+      end
     
     private 
 
     def project_params
         params.require(:project).permit(:name, :description, :github_link, :youtube_link, :likes, :image)
     end 
+
+    def find_project
+        Project.find(params[:id])
+      end
 
 end

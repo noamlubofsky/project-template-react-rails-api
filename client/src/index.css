@@ -11,3 +11,22 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.card {
+  text-align: center;
+  /* border: grey solid 1px; */
+  width: 360px;
+  height: 360px;
+  background: white;
+  display: inline-grid;
+  margin: 1rem 2rem;
+  box-shadow: 10px 12px #353333;
+  background-color: rgb(255, 255, 255);}
+
+  .likeBtn {
+    height: 38px;
+    padding: 0 30px;
+    font-size: 11;
+    background-color: transparent;
+    border-radius: 6px
+  }

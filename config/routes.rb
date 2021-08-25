@@ -13,4 +13,8 @@ Rails.application.routes.draw do
   get "/me", to: "users#show"
   post "/login", to: "sessions#create"
   get "/logout", to: "sessions#destroy"
+  get "/projects", to: "projects#index"
+  patch "/projects/:id/like", to: "projects#increment_likes"
+  patch "/projects/:id/unlike", to: "projects#decrement_likes"
+
 end
