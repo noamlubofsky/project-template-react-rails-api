@@ -62,7 +62,8 @@ function ProjectCard({ project, handleUpdateProject }) {
         <div className="content">
         
           <div className="meta text-wrap">
-            <small>{project.description}</small>
+            <small>About this Project: {project.description}</small>
+            <br></br>
             <br></br>
             <small>{project.github_link}</small>
             <br></br>

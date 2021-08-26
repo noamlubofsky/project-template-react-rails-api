@@ -167,6 +167,7 @@ label {
     text-shadow: 0 0 0.15em #1da9cc;
     white-space: nowrap;
     filter: blur(0.007em);
+    margin-top: 0.5em;
   }
 
   img {

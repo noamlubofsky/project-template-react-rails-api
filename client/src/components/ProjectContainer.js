@@ -3,10 +3,20 @@ import {useState, useEffect} from "react";
 import {useHistory} from "react-router";
 import ProjectCard from "./ProjectCard";
 import Header from "./Header";
+import styled from 'styled-components';
+
 
 function ProjectContainer () {
     const [projects, setProjects] = useState([])
     const [errors, setErrors] = useState([])
+
+    const [ search, setSearch ] = useState('')
+    const handleChange = (e) => {
+      setSearch(e.target.value)
+    }
+    const searchFilterProjects = projects.filter(project => 
+      project.name.toLowerCase().includes(search.toLowerCase())
+  ); 
 
     let history = useHistory();
 
@@ -60,13 +70,17 @@ function ProjectContainer () {
              <div>
                <Header />
             <div className="ui five column grid"></div>
+            <Form >
+                <input onChange = {handleChange} className="loginForm"
+                 id="searchbox" type="text" placeholder="Search Projects"/>
+            </Form>
         {/* <h1>Available Projects</h1> */}
         {/* <span>
         <button class="glow-on-hover" type="button" onClick={handleClick}>New Project</button>
         <button class="glow-on-hover" type="button" onClick={toFavorites}>My Favorites</button>
         </span> */}
         <br></br>
-        {projects.map(project => (
+        {searchFilterProjects.map(project => (
           <ProjectCard project={project} handleUpdateProject={handleUpdateProject}/>
         ))}
         </div>
@@ -74,3 +88,51 @@ function ProjectContainer () {
     )
 }
 export default ProjectContainer;
+
+const Form = styled.form `
+    color: white;
+    font-family: Andale Mono, monospace;
+    font-size: 2em;
+    margin:auto;
+    padding:auto;
+    width:50%;
+    display:flex;
+    flex-direction:column;
+    input{
+        width: 100%;
+        position: relative;
+        font-family: 'Montserrat', Arial, sans-serif;
+        font-size: calc(1px + 1vw);
+        font-weight: 700;
+        color: black;
+        letter-spacing: 0.02em;
+        text-shadow: 0 0 0.15em #grey;
+        user-select: none;
+        white-space: nowrap;
+        filter: blur(0.007em);
+        border-radius:10px;
+        margin-top:50px
+
+    }
+    textarea{
+        width: 100%;
+        position: relative;
+        font-family: 'Montserrat', Arial, sans-serif;
+        font-size: calc(1px + 1vw);
+        font-weight: 700;
+        color: black;
+        letter-spacing: 0.02em;
+        text-shadow: 0 0 0.15em #grey;
+        user-select: none;
+        white-space: nowrap;
+        filter: blur(0.007em);
+        border-radius:10px;
+        
+    }
+    input[type=submit]{
+        font-family: 'Monospace'; 
+        font-size: large;
+        background-color:#black;
+        color:navy;
+    }
+`
