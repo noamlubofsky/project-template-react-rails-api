@@ -20,8 +20,11 @@ code {
   background: white;
   display: inline-grid;
   margin: 1rem 2rem;
-  box-shadow: 10px 12px #353333;
-  background-color: rgb(255, 255, 255);}
+  box-shadow: 3px 5px #353333;
+  background-image: url(https://i.pinimg.com/474x/d2/94/89/d29489710f3b44f94f80e76cfacd0a5c.jpg);
+  background-size: 490px;
+  background-position: center;
+}
 
   .likeBtn {
     height: 38px;
@@ -29,4 +32,29 @@ code {
     font-size: 11;
     background-color: transparent;
     border-radius: 6px
+  }
+
+  .column {
+    float: left;
+    /* width: 25%; */
+    padding: 20px;
+  }
+
+  h1 {
+    text-align: center;
+  }
+
+  h2 {
+    background-image: linear-gradient(silver, white);
+    color: rgba(2, 2, 102, 0.767);
+  }
+
+  small {
+    font-size: medium;
+    font-weight: bold
+  }
+
+  .pic {
+max-width: 5px;
+max-height: 5px;
   }

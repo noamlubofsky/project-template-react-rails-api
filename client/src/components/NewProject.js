@@ -1,7 +1,11 @@
 import React, { useState} from 'react';
 import styled from 'styled-components';
+import {useHistory} from "react-router";
+
 
 function NewProject () {
+
+      let history = useHistory();
 
     const [projectName, setProjectName] = useState('')
     const [image, setImage] = useState('')
@@ -31,7 +35,10 @@ function NewProject () {
         })
         .then(res => res.json())
         .then(json =>{
-          if(json.error) setErrors(json.error)
+          if(json.error) {setErrors(json.error)}else{
+            history.push("/projects")
+          }
+          
         })
     }
     return (

@@ -16,14 +16,14 @@ function App() {
   const history = useHistory();
   console.log(user)
   
-// if(!user)history.push('/signup');
+if(!user)history.push('/signup');
 // if(!user)history.push('/projects/new');
 
   return (
     <>
     <Switch>
      {/* <Header user={user} setUser={setUser}/>  */}
-        <Route exact path="/">
+        <Route exact path="/projects">
           <ProjectContainer/>
         </Route>
         <Route exact path="/projects/new">

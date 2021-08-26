@@ -46,6 +46,7 @@ function ProjectCard({ project, handleUpdateProject }) {
 
   return (
     <div className="ui column">
+      <div>
       <div
         className="ui card"
         key={project.id}
@@ -66,10 +67,12 @@ function ProjectCard({ project, handleUpdateProject }) {
             <br></br>
             <small>{project.youtube_link}</small>
             <br></br>
+            <br></br>
             <small>{project.likes} Likes</small>
           </div>
 
           <span>
+              <br></br>
               <button type='submit' className='likeBtn' onClick={toggleLike}>
                 {!liked ? '♡' : '❤️'}
               </button>
@@ -81,7 +84,7 @@ function ProjectCard({ project, handleUpdateProject }) {
         </div>
 
 
-        
+        </div>
       </div>
     </div>
   );

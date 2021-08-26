@@ -13,6 +13,11 @@ function Login() {
       },
       body: JSON.stringify({ username, password }),
     })
+    .then((r) => r.json())
+    .then((newUser) => {
+      addUser(newUser);
+      setCurrentUser(newUser);
+    });
   }
 
   return (
