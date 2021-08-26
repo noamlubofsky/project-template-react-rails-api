@@ -6,7 +6,7 @@ class CreateProjects < ActiveRecord::Migration[6.1]
       t.string :github_link
       t.string :youtube_link
       t.integer :likes
-      t.binary :image
+      t.string :image
 
       t.timestamps
     end

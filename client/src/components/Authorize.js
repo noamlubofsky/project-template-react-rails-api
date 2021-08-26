@@ -37,22 +37,30 @@ function Authorize({setUser}) {
     return (
         <> 
         <div className = "App">
-        <h1> Login Below </h1>
+        <h1> Welcome to </h1>
+        <h1> Git Projects </h1>
+        <h3> A New Way to Explore </h3>
+        <h3> and Share Github Projects </h3>
+
         <Form onSubmit={onSubmit}>
         <label>
           Username
           <br/>
-          <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
+          <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} className="loginForm" />
         </label>
         <br/>
         <label>
          Password
         <br/>
-        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} className="loginForm" />
         </label>
         <br/>
-        <input type="submit" value="Sign up!" />
-        <input type="submit" value="Login!" onClick={()=> setLogin(true)} />
+        <button class="glow-on-hover" type="button" onClick={()=> setLogin(true)}>Login</button>
+        <br></br>
+        <button class="glow-on-hover" type="submit">Sign Up</button>
+
+        {/* <input type="submit" value="Sign up" className="button" class="glow-on-hover"/>
+        <input type="submit" value="Login" onClick={()=> setLogin(true)} className="button" class="glow-on-hover"/> */}
       </Form>
       {errors?errors.map(e => <Errors>{e}</Errors>):null}
         </div>
@@ -67,7 +75,7 @@ color: white;`
 const Form = styled.form `
     color: white;
     font-family: Andale Mono, monospace;
-    font-size: .5em;
+    font-size: 2em;
     margin:auto;
     padding:auto;
     width:50%;
@@ -75,14 +83,26 @@ const Form = styled.form `
     flex-direction:column;
     input{
         width: 100%;
+        position: relative;
+        font-family: 'Montserrat', Arial, sans-serif;
+        font-size: calc(1px + 1vw);
+        font-weight: 700;
+        color: black;
+        letter-spacing: 0.02em;
+        text-shadow: 0 0 0.15em #grey;
+        user-select: none;
+        white-space: nowrap;
+        filter: blur(0.007em);
+        border-radius:10px;
+
     }
     textarea{
         width: 100%;
     }
     input[type=submit]{
-        font-family: 'Bebas Neue', cursive; 
-        font-size: 1em;
-        background-color:#34bdeb;
-        color:white;
+        font-family: 'Monospace'; 
+        font-size: large;
+        background-color:#black;
+        color:navy;
     }
 `

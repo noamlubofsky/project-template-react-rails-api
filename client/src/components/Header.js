@@ -1,19 +1,34 @@
 import styled from 'styled-components'
 import {Link} from "react-router-dom";
+import {useHistory} from "react-router";
 
 function Header({user,setUser}) {
+  let history = useHistory();
+
    function handleLogout(){
-     fetch('/logout')
-     .then(() => setUser(null))
+    window.location.href="/"
    }
+
+   function handleClick(){
+    history.push("/projects/new")
+  }
+
+  function toFavorites(){
+    history.push("/favorites")
+  }
     return (
         <> 
 
-         <h1>Project Keeper</h1>
+         <h1>Git Projects</h1>
          <Nav>
-          <h3>{user?user.username:null}</h3>
+          {/* <h3>{user?user.username:null}</h3>
           <h3 onClick={handleLogout}> {user?' Logout':null}</h3>   
-           <Link to="/">Home</Link>
+           <Link to="/">Home</Link> */}
+                <span>
+        <button class="glow-on-hover" type="button" onClick={handleLogout}>Logout</button>
+        <button class="glow-on-hover" type="button" onClick={handleClick}>New Project</button>
+        <button class="glow-on-hover" type="button" onClick={toFavorites}>My Favorites</button>
+        </span>
          </Nav>
 
         </>

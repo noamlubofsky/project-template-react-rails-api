@@ -2,14 +2,21 @@ import React from "react";
 import {useState, useEffect} from "react";
 import {useHistory} from "react-router";
 import ProjectCard from "./ProjectCard";
+import Header from "./Header";
 
 function ProjectContainer () {
     const [projects, setProjects] = useState([])
+    const [errors, setErrors] = useState([])
+
     let history = useHistory();
 
-    function handleClick(){
-      history.push("/projects/new")
-    }
+    // function handleClick(){
+    //   history.push("/projects/new")
+    // }
+
+    // function toFavorites(){
+    //   history.push("/favorites")
+    // }
 
     useEffect(() => {
         function fetchItems(){
@@ -38,7 +45,7 @@ function ProjectContainer () {
       fetch('/favorites',{
         method:'POST',
         headers:{'Content-Type': 'application/json'},
-        body:JSON.stringify(favorites)
+        body:JSON.stringify(projects)
       })
       .then(res => res.json())
       .then(json =>{
@@ -51,9 +58,13 @@ function ProjectContainer () {
 
     return (
              <div>
+               <Header />
             <div className="ui five column grid"></div>
-        <h1>Available Projects</h1>
-        <button onClick={handleClick}>New Project</button>
+        {/* <h1>Available Projects</h1> */}
+        {/* <span>
+        <button class="glow-on-hover" type="button" onClick={handleClick}>New Project</button>
+        <button class="glow-on-hover" type="button" onClick={toFavorites}>My Favorites</button>
+        </span> */}
         <br></br>
         {projects.map(project => (
           <ProjectCard project={project} handleUpdateProject={handleUpdateProject}/>

@@ -28,7 +28,8 @@ end
 10.times do
     Project.create(
         name: Faker::Name.name,
-        description: Faker::Lorem.paragraphs(sentence_count: rand(2..8))
+        image: src="https://res.cloudinary.com/practicaldev/image/fetch/s--660n673s--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/ddp5813x3gge9wzyuyaj.jpg",
+        description: Faker::Lorem.sentence(word_count: rand(2..8)),
         github_link: Faker::Internet.url(host: 'github'),
         youtube_link: Faker::Internet.url(host: 'youtube'),
         likes: rand(1..100),

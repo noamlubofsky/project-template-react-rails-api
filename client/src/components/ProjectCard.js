@@ -45,17 +45,18 @@ function ProjectCard({ project, handleUpdateProject }) {
     }
 
   return (
-    <div className="ui column">
+    <div className="ui column" >
       <div>
       <div
         className="ui card"
         key={project.id}
       >
+          <div class="card-body">
             <div className="header">
             <h2>{project.name}</h2>
           </div>
         <div className="pic" >
-          <img alt="pic" src={project.image} />
+          <img alt="pic" src={project.image} onError={(e)=>{e.target.onerror = null; e.target.src="https://static.thenounproject.com/png/2073332-200.png"}} />
         </div>
         
         <div className="content">
@@ -73,17 +74,17 @@ function ProjectCard({ project, handleUpdateProject }) {
 
           <span>
               <br></br>
-              <button type='submit' className='likeBtn' onClick={toggleLike}>
-                {!liked ? '♡' : '❤️'}
+              <button type='submit' class='likeBtn' onClick={toggleLike}>
+                {!liked ? '♡' : '💙'}
               </button>
-              <button className='likeBtn' onClick={toggleFavorite}>
+              <button class='favBtn' onClick={toggleFavorite}>
                   {!favorite ? 'Add to Favorites' : 'Remove from Favorites'}
                   </button>
           </span>
         
         </div>
 
-
+        </div>
         </div>
       </div>
     </div>
