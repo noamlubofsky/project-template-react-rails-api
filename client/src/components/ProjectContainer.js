@@ -34,12 +34,27 @@ function ProjectContainer () {
       }
 
     //   console.log(projects)
+    function addToFavorites() {
+      fetch('/favorites',{
+        method:'POST',
+        headers:{'Content-Type': 'application/json'},
+        body:JSON.stringify(favorites)
+      })
+      .then(res => res.json())
+      .then(json =>{
+        if(json.error) {setErrors(json.error)}else{
+          history.push("/favorites")
+        }
+        
+      })
+    }
 
     return (
              <div>
             <div className="ui five column grid"></div>
         <h1>Available Projects</h1>
         <button onClick={handleClick}>New Project</button>
+        <br></br>
         {projects.map(project => (
           <ProjectCard project={project} handleUpdateProject={handleUpdateProject}/>
         ))}

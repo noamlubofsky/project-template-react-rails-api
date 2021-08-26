@@ -54,7 +54,7 @@ code {
     font-weight: bold
   }
 
-  .pic {
-max-width: 5px;
-max-height: 5px;
+  img {
+height: auto;
+width: auto;
   }
