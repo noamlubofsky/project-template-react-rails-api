@@ -5,6 +5,14 @@ import ProjectCard from "./ProjectCard";
 
 function ProjectContainer () {
     const [projects, setProjects] = useState([])
+
+    const [ search, setSearch ] = useState('')
+    const handleChange = (e) => {
+      setSearch(e.target.value)
+    }
+    const searchFilterProjects = projects.filter(project => 
+      project.name.toLowerCase().includes(search.toLowerCase())
+  ); 
     let history = useHistory();
 
     function handleClick(){
@@ -50,14 +58,34 @@ function ProjectContainer () {
     }
 
     return (
-             <div>
+          <div>
             <div className="ui five column grid"></div>
-        <h1>Available Projects</h1>
-        <button onClick={handleClick}>New Project</button>
+            <h1>Available Projects</h1>
+           <button onClick={handleClick}>New Project</button>
+        <div className ="project-container">
+            <form >
+                <input onChange = {handleChange}
+                 id="searchbox" type="text" placeholder="Search Projects"/>
+            </form>
+            </div>
         <br></br>
-        {projects.map(project => (
+        {/* {projects.map(project => (
           <ProjectCard project={project} handleUpdateProject={handleUpdateProject}/>
-        ))}
+        ))} */}
+        <div>
+            <h1 style={{color: "black"}}>Projects</h1>
+                {searchFilterProjects.map(project => {
+                    return (
+                    <ProjectCard
+                    project = {project}
+                    handleUpdateProject={handleUpdateProject}
+                    handleClick={handleClick}
+                    handleAdd={addToFavorites}
+                    />
+                )
+                })
+                }
+            </div>  
         </div>
      
     )
