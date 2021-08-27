@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
   wrap_parameters format: []
-    skip_before_action :authorize, only: [:create]
-
+  before_action :authorize, only: [:show]
     # def show
     #     user = User.find_by(id: session[:user_id])
     #     if user
@@ -40,6 +39,10 @@ class UsersController < ApplicationController
     
       def user_params
         params.permit(:username, :password, :password_confirmation)
+      end
+
+      def authorize
+        render json: {error: "Not authorized"}, status: :unauthorized unless session.include? :user_id
       end
 
 end

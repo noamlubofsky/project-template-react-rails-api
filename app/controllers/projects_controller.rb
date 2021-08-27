@@ -1,5 +1,4 @@
 class ProjectsController < ApplicationController
-    skip_before_action :authorize
     def index
         projects = Project.all
         render json: projects

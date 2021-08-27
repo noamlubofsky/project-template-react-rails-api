@@ -27,16 +27,16 @@ function FavoritesContainer ({user, favorites, setFavorites}) {
       },[]);
 
 
-    //   const myFavorites = favorites.filter(favorite => 
-    //     favorite.user_id !== user.id
-    // ); 
+      const myFavorites = favorites.filter(favorite => 
+        favorite.user.id === user.id
+    ); 
 
 
     return (
              <div>
                <Header />
             <div className="ui five column grid"></div>
-            {favorites.map(favorite => (
+            {myFavorites.map(favorite => (
           <FavoriteCard favorite={favorite} setFavorites={setFavorites}/> 
         ))}
         <br></br>

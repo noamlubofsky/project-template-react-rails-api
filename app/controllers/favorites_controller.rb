@@ -1,5 +1,4 @@
 class FavoritesController < ApplicationController
-    skip_before_action :authorize
 
     def index
         favorites = Favorite.all
