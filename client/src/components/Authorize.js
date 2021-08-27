@@ -46,18 +46,18 @@ function Authorize({setUser}) {
         <label>
           Username
           <br/>
-          <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} className="loginForm" />
+          <input required type="text" value={username} onChange={(e) => setUsername(e.target.value)} className="loginForm" />
         </label>
         <br/>
         <label>
          Password
         <br/>
-        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} className="loginForm" />
+        <input required type="password" value={password} onChange={(e) => setPassword(e.target.value)} className="loginForm" />
         </label>
         <br/>
-        <button class="glow-on-hover" type="button" onClick={()=> setLogin(true)}>Login</button>
+        <button class="glow-on-hover" value="Login" type="submit" onClick={()=> setLogin(true)}>Login</button>
         <br></br>
-        <button class="glow-on-hover" type="submit">Sign Up</button>
+        <button class="glow-on-hover" value="Sign up" type="submit">Sign Up</button>
 
         {/* <input type="submit" value="Sign up" className="button" class="glow-on-hover"/>
         <input type="submit" value="Login" onClick={()=> setLogin(true)} className="button" class="glow-on-hover"/> */}

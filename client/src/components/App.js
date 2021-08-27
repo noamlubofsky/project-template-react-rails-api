@@ -16,7 +16,7 @@ function App() {
   const history = useHistory();
   console.log(user)
   
-if(!user)history.push('/signup');
+if(!user)history.push('/sign_up');
 // if(!user)history.push('/projects/new');
 
   return (
@@ -29,7 +29,7 @@ if(!user)history.push('/signup');
         <Route exact path="/projects/new">
           <NewProject />
         </Route>
-        <Route path="/signup">
+        <Route path="/sign_up">
           <Authorize setUser={setUser} />
         </Route>
       </Switch>
