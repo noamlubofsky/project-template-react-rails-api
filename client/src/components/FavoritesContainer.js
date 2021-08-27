@@ -6,73 +6,44 @@ import Header from "./Header";
 import styled from 'styled-components';
 
 
-function ProjectContainer ({user, favorites, setFavorites}) {
-    // const [favorites, setFavorites] = useState([])
-//     const [ search, setSearch ] = useState('')
+function FavoritesContainer ({user, favorites, setFavorites}) {
 
-//     const handleChange = (e) => {
-//       setSearch(e.target.value)
-//     }
-//     const searchFilterProjects = favorites.filter(project => 
-//       project.name.toLowerCase().includes(search.toLowerCase())
-//   ); 
 
     let history = useHistory();
 
-    // function handleClick(){
-    //   history.push("/projects/new")
-    // }
-
-    // function toFavorites(){
-    //   history.push("/favorites")
-    // }
-
     useEffect(() => {
+        function fetchItems(){
           fetch("/favorites")
           .then(res=>res.json())
-          .then((data) => setFavorites(data));
-    }, []);
+          .then(projects => {
+            if(projects.error){
+                history.push(`/sign_up`);
+              }else{
+                setFavorites(projects)
+              }
+          })
+        }
+        fetchItems();
+      },[]);
 
-    //   function handleUpdateProject(updatedProject) {
-    //     const updatedProjectsArray = projects.map((project) => {
-    //       return project.id === updatedProject.id ? updatedProject : project;
-    //     });
-    //     setProjects(updatedProjectsArray);
-    //   }
 
-    //   console.log(projects)
-    // function addToFavorites() {
-    //   fetch('/favorites',{
-    //     method:'POST',
-    //     headers:{'Content-Type': 'application/json'},
-    //     body:JSON.stringify(projects)
-    //   })
-    //   .then(res => res.json())
-    //   .then(json =>{
-    //     if(json.error) {setErrors(json.error)}else{
-    //       history.push("/favorites")
-    //     }
-        
-    //   })
-    // }
+    //   const myFavorites = favorites.filter(favorite => 
+    //     favorite.user_id !== user.id
+    // ); 
+
 
     return (
              <div>
                <Header />
             <div className="ui five column grid"></div>
-            {/* <Form >
-                <input onChange = {handleChange} className="loginForm"
-                 id="searchbox" type="text" placeholder="Search Projects"/>
-            </Form> */}
-        <br></br>
-        {favorites.map(favorite => (
-          <FavoriteCard favorite={favorite} user={user} />
+            {favorites.map(favorite => (
+          <FavoriteCard favorite={favorite} setFavorites={setFavorites}/> 
         ))}
+        <br></br>
         </div>
-     
     )
 }
-export default ProjectContainer;
+export default FavoritesContainer;
 
 const Form = styled.form `
     color: white;

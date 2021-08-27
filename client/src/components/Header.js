@@ -16,6 +16,10 @@ function Header({user,setUser}) {
   function toFavorites(){
     history.push("/favorites")
   }
+
+  function toProjects(){
+    history.push("/projects")
+  }
     return (
         <> 
 
@@ -26,8 +30,10 @@ function Header({user,setUser}) {
            <Link to="/">Home</Link> */}
                 <span>
         <button class="glow-on-hover" type="button" onClick={handleLogout}>Logout</button>
+        <button class="glow-on-hover" type="button" onClick={toProjects}>Projects</button>
         <button class="glow-on-hover" type="button" onClick={handleClick}>New Project</button>
         <button class="glow-on-hover" type="button" onClick={toFavorites}>My Favorites</button>
+
         </span>
          </Nav>
 

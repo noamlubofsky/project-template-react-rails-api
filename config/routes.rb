@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   patch "/projects/:id/unlike", to: "projects#decrement_likes"
   get "/favorites", to: "favorites#index"
   post "/favorites", to: "favorites#create"
+  destroy "/favorites/:id/destroy", to: "favorites#destroy"
     # post '/login', to: 'users#login' 
 
   get "/logout", to: "sessions#destroy"

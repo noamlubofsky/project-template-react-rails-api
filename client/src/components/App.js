@@ -1,7 +1,7 @@
 import './App.css';
 import GlobalFonts from '../fonts/fonts'
 // import Login from './Login'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Route, Switch, useHistory} from "react-router";
 
 import Authorize from "./Authorize"
@@ -14,7 +14,14 @@ function App() {
   const [user, setUser] = useState(null);
   const [favorites, setFavorites] = useState([])
   // const [projects, setProjects] = useState([]);
-  
+  useEffect(() => {
+    fetch("/me").then((r) => {
+      if (r.ok) {
+        r.json().then((user) => setUser(user));
+      }
+    });
+  }, []);
+
   const history = useHistory();
   console.log(user)
   
@@ -26,7 +33,7 @@ if(!user)history.push('/sign_up');
     <Switch>
      {/* <Header user={user} setUser={setUser}/>  */}
         <Route exact path="/projects">
-          <ProjectContainer user={user}/>
+          <ProjectContainer user={user} favorites={favorites} setFavorites={setFavorites}/>
         </Route>
         <Route exact path="/projects/new">
           <NewProject />
@@ -35,7 +42,7 @@ if(!user)history.push('/sign_up');
           <Authorize user={user} setUser={setUser} />
         </Route>
         <Route exact path="/favorites">
-          <FavoritesContainer favorites={favorites} setFavorites={setFavorites} />
+          <FavoritesContainer user={user} favorites={favorites} setFavorites={setFavorites} />
         </Route>
       </Switch>
       <GlobalFonts />

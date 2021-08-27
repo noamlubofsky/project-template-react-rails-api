@@ -6,7 +6,7 @@ import Header from "./Header";
 import styled from 'styled-components';
 
 
-function ProjectContainer ({user}) {
+function ProjectContainer ({user, favorites, setFavorites}) {
     const [projects, setProjects] = useState([])
     const [errors, setErrors] = useState([])
     const [userId, setUserId] = useState('')
@@ -53,12 +53,10 @@ function ProjectContainer ({user}) {
       }
 
 
-    function addToFavorites(e){
-      e.preventDefault()
+    function addToFavorites(project){
       const favorite = {
-        user_id: userId,
-        project_id: projectId,
-        ongoing:true
+        user_id: user.id,
+        project_id: project.id
       }
       fetch('/favorites',{
         method:'POST',
@@ -71,6 +69,12 @@ function ProjectContainer ({user}) {
       })
   }
 
+  
+  // function addToFavorites(projects) {
+  //   if(!favorites.includes(projects)) {
+  //  const updateFavorites = [...favorites, projects]
+  //  setFavorites(updateFavorites)
+  // }}
     return (
              <div>
                <Header />

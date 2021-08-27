@@ -2,7 +2,7 @@ class FavoritesController < ApplicationController
     skip_before_action :authorize
 
     def index
-        favorites = Favorites.all
+        favorites = Favorite.all
         render json: favorites
     end
 

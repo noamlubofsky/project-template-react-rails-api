@@ -1,7 +1,7 @@
 
 import React, {useState} from "react";
 
-function ProjectCard({ project, handleUpdateProject, addToFavorites, user }) {
+function ProjectCard({ project, handleUpdateProject, addToFavorites}) {
     const [liked, setLiked] = useState(false)
     const [favorite, setFavorite] = useState(false)
     const {id} = project;
@@ -44,6 +44,7 @@ function ProjectCard({ project, handleUpdateProject, addToFavorites, user }) {
     //     setFavorite(!favorite)
     // }
 
+
   return (
     <div className="ui column" >
       <div>
@@ -78,8 +79,8 @@ function ProjectCard({ project, handleUpdateProject, addToFavorites, user }) {
               <button type='submit' class='likeBtn' onClick={toggleLike}>
                 {!liked ? '♡' : '💙'}
               </button>
-              <button type='submit' class='favBtn' onClick={addToFavorites}>
-                  {!favorite ? 'Add to Favorites' : 'Remove from Favorites'}
+              <button type='button' class='favBtn' onClick={() => addToFavorites(project)}>
+                   {!favorite ? 'Add to Favorites' : 'Remove from Favorites'}
                   </button>
           </span>
         
