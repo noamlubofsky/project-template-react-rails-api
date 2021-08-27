@@ -8,9 +8,11 @@ import Authorize from "./Authorize"
 import ProjectContainer from "./ProjectContainer"
 import NewProject from "./NewProject"
 import Header from "./Header"
+import FavoritesContainer from "./FavoritesContainer"
 
 function App() {
   const [user, setUser] = useState(null);
+  const [favorites, setFavorites] = useState([])
   // const [projects, setProjects] = useState([]);
   
   const history = useHistory();
@@ -24,13 +26,16 @@ if(!user)history.push('/sign_up');
     <Switch>
      {/* <Header user={user} setUser={setUser}/>  */}
         <Route exact path="/projects">
-          <ProjectContainer/>
+          <ProjectContainer user={user}/>
         </Route>
         <Route exact path="/projects/new">
           <NewProject />
         </Route>
         <Route path="/sign_up">
-          <Authorize setUser={setUser} />
+          <Authorize user={user} setUser={setUser} />
+        </Route>
+        <Route exact path="/favorites">
+          <FavoritesContainer favorites={favorites} setFavorites={setFavorites} />
         </Route>
       </Switch>
       <GlobalFonts />

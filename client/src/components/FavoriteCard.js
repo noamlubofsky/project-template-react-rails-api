@@ -1,48 +1,9 @@
-
 import React, {useState} from "react";
 
-function ProjectCard({ project, handleUpdateProject, addToFavorites, user }) {
-    const [liked, setLiked] = useState(false)
+function FavoriteCard({ project, user }) {
     const [favorite, setFavorite] = useState(false)
     const {id} = project;
 
-    function toggleLike() {
-        const updateObj = {
-            likes: project.likes + 1,
-        };
-
-        setLiked(!liked)
-
-        {!liked ? 
-            fetch(`/projects/${id}/like`, {
-            method: "PATCH",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(updateObj),
-          })
-            .then((r) => r.json())
-            .then((updatedProject) => {
-              handleUpdateProject(updatedProject);
-            }) 
-            :
-            fetch(`/projects/${id}/unlike`, {
-                method: "PATCH",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-                body: JSON.stringify(updateObj),
-              })
-                .then((r) => r.json())
-                .then((updatedProject) => {
-                  handleUpdateProject(updatedProject);
-                });
-            }
-    }
-
-    // const toggleFavorite = () => {
-    //     setFavorite(!favorite)
-    // }
 
   return (
     <div className="ui column" >
@@ -72,16 +33,16 @@ function ProjectCard({ project, handleUpdateProject, addToFavorites, user }) {
             <br></br>
             <small>{project.likes} Likes</small>
           </div>
-
+{/* 
           <span>
               <br></br>
               <button type='submit' class='likeBtn' onClick={toggleLike}>
                 {!liked ? '♡' : '💙'}
               </button>
-              <button type='submit' class='favBtn' onClick={addToFavorites}>
+              <button class='favBtn' onClick={toggleFavorite}>
                   {!favorite ? 'Add to Favorites' : 'Remove from Favorites'}
                   </button>
-          </span>
+          </span> */}
         
         </div>
 
@@ -92,4 +53,4 @@ function ProjectCard({ project, handleUpdateProject, addToFavorites, user }) {
   );
 }
 
-export default ProjectCard;
+export default FavoriteCard;

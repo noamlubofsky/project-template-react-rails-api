@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import React, {useState} from 'react'
 import {useHistory} from "react-router";
 
-function Authorize({setUser}) {
+function Authorize({user, setUser}) {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [login, setLogin]  = useState('')

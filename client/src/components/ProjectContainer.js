@@ -6,9 +6,11 @@ import Header from "./Header";
 import styled from 'styled-components';
 
 
-function ProjectContainer () {
+function ProjectContainer ({user}) {
     const [projects, setProjects] = useState([])
     const [errors, setErrors] = useState([])
+    const [userId, setUserId] = useState('')
+    const [projectId, setProjectId] = useState('')
 
     const [ search, setSearch ] = useState('')
     const handleChange = (e) => {
@@ -50,21 +52,24 @@ function ProjectContainer () {
         setProjects(updatedProjectsArray);
       }
 
-    //   console.log(projects)
-    function addToFavorites() {
+
+    function addToFavorites(e){
+      e.preventDefault()
+      const favorite = {
+        user_id: userId,
+        project_id: projectId,
+        ongoing:true
+      }
       fetch('/favorites',{
         method:'POST',
         headers:{'Content-Type': 'application/json'},
-        body:JSON.stringify(projects)
+        body:JSON.stringify(favorite)
       })
       .then(res => res.json())
       .then(json =>{
-        if(json.error) {setErrors(json.error)}else{
-          history.push("/favorites")
-        }
-        
+        if(json.error) setErrors(json.error)
       })
-    }
+  }
 
     return (
              <div>
@@ -81,7 +86,7 @@ function ProjectContainer () {
         </span> */}
         <br></br>
         {searchFilterProjects.map(project => (
-          <ProjectCard project={project} handleUpdateProject={handleUpdateProject}/>
+          <ProjectCard project={project} handleUpdateProject={handleUpdateProject} user={user} addToFavorites={addToFavorites}/>
         ))}
         </div>
      
